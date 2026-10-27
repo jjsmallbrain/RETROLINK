@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Retro Link</title>
+  <!-- Relative paths (no leading slash) so the site works at username.github.io/RETROLINK/ -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <main class="gate" id="gate">
+    <h1>Enter password</h1>
+    <form id="gate-form" autocomplete="off">
+      <input id="gate-input" type="password" aria-label="Password" autofocus>
+      <button id="gate-button" type="submit">Enter</button>
+    </form>
+    <p class="message" id="gate-message" role="alert"></p>
+  </main>
+
+  <div class="app" id="app" hidden>
+    <header class="topbar">
+      <h1 class="brand">Retro Link</h1>
+      <span class="badge" id="dev-badge" hidden>Dev mode</span>
+      <button id="dev-toggle" type="button" class="quiet" aria-expanded="false" hidden>Dev tools</button>
+      <button id="logout" type="button" class="quiet">Log out</button>
+    </header>
+
+    <div id="library">
+
+    <section id="dev-panel" class="dev-panel" aria-label="Dev tools" hidden>
+      <div class="dev-boxes">
+        <div class="dev-box">
+          <h2>Add games</h2>
+          <p>Drag game files anywhere onto this page, or <button id="pick-files" type="button" class="linklike">choose files</button>.</p>
+          <p class="dim">ROMs: .sfc .smc .nes .gba .gb .gbc .md .gen .smd<br>HTML5 games: a single .html file</p>
+          <p class="dim">Only add games you have the right to share. This site is public.</p>
+          <input id="file-input" type="file" multiple hidden>
+        </div>
+        <div class="dev-box">
+          <h2>Background</h2>
+          <p class="dev-row">
+            <label for="bg-color">Color</label>
+            <input id="bg-color" type="color" value="#101820">
+            <button id="bg-pick" type="button" class="quiet">Choose picture</button>
+            <button id="bg-clear" type="button" class="quiet">Remove</button>
+          </p>
+          <input id="bg-file" type="file" accept="image/*" hidden>
+          <p class="dim" id="bg-note"></p>
+        </div>
+        <div class="dev-box">
+          <h2>Passwords</h2>
+          <p class="dev-col">
+            <input id="pw-user" type="password" placeholder="New visitor password" aria-label="New visitor password" autocomplete="off">
+            <input id="pw-dev" type="password" placeholder="New dev password" aria-label="New dev password" autocomplete="off">
+            <button id="pw-save" type="button" class="quiet">Prepare change</button>
+          </p>
+          <p class="dim">New passwords start working after you export and upload js/config.js.</p>
+        </div>
+        <div class="dev-box">
+          <h2>Publish</h2>
+          <p id="dev-summary" class="dim"></p>
+          <p class="dev-row">
+            <button id="export-btn" type="button" class="primary">Export</button>
+            <button id="discard-btn" type="button" class="quiet">Discard changes</button>
+          </p>
+        </div>
+      </div>
+      <p id="dev-status" class="dev-status" role="status"></p>
+    </section>
+
+    <div class="controls">
+      <input id="search" type="search" placeholder="Search games" aria-label="Search games" autocomplete="off">
+      <div id="tabs" class="tabs" role="group" aria-label="Categories"></div>
+    </div>
+
+    <main>
+      <div id="grid" class="grid"></div>
+      <p id="empty" class="empty" hidden></p>
+    </main>
+    </div>
+
+    <section id="player" class="player" hidden>
+      <div class="player-bar">
+        <button id="back" type="button" class="quiet">Back to library</button>
+        <strong id="player-title"></strong>
+        <button id="fs" type="button" class="quiet">Fullscreen</button>
+      </div>
+      <div id="stage" class="stage"></div>
+      <p id="player-hint" class="hint"></p>
+    </section>
+
+    <div id="drop-overlay" class="drop-overlay" hidden>Drop game files to add them</div>
+
+    <dialog id="edit-dialog" class="edit-dialog" aria-label="Edit game">
+      <h2>Edit game</h2>
+      <div class="edit-body">
+        <div class="edit-icon-col">
+          <img id="edit-icon" alt="Current icon" draggable="false">
+          <button id="edit-icon-pick" type="button" class="quiet">Change icon</button>
+          <input id="edit-icon-file" type="file" accept="image/*" hidden>
+        </div>
+        <div class="edit-fields">
+          <label for="edit-title">Name</label>
+          <input id="edit-title" type="text" maxlength="60">
+          <label for="edit-console">Console</label>
+          <select id="edit-console"></select>
+        </div>
+      </div>
+      <div class="edit-actions">
+        <button id="edit-remove" type="button" class="quiet danger">Remove game</button>
+        <span class="spacer"></span>
+        <button id="edit-cancel" type="button" class="quiet">Cancel</button>
+        <button id="edit-save" type="button" class="primary">Save</button>
+      </div>
+    </dialog>
+  </div>
+
+  <script src="js/config.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/library.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/zip.js"></script>
+  <script src="js/theme.js"></script>
+  <script src="js/grid.js"></script>
+  <script src="js/player.js"></script>
+  <script src="js/dev.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
